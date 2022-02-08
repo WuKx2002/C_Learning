@@ -1,0 +1,3 @@
+﻿  Project2_3.c
+C:\Users\Wu Kaixiang\Desktop\My_Program\Project2_3\Project2_3.c(9,1): warning C4305: “初始化”: 从“double”到“float”截断
+  Project2_3.vcxproj -> C:\Users\Wu Kaixiang\Desktop\My_Program\Project2_3\x64\Debug\Project2_3.exe

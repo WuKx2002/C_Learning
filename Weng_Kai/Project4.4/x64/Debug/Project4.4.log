@@ -1,0 +1,5 @@
+﻿  Guessing_Game .c
+C:\Users\Wu Kaixiang\Desktop\My_Program\Weng_Kai\Project4.4\Guessing_Game .c(7,12): warning C4244: “函数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+  Integer_Inversion.c
+  正在生成代码...
+  Project4.4.vcxproj -> C:\Users\Wu Kaixiang\Desktop\My_Program\Weng_Kai\Project4.4\x64\Debug\Project4.4.exe

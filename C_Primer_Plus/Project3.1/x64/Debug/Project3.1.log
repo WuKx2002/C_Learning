@@ -1,0 +1,6 @@
+﻿  Project3.1.c
+C:\Users\Wu Kaixiang\Desktop\My_Program\C_Primer_Plus\Project3.1\Project3.1.c(12,26): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+C:\Users\Wu Kaixiang\Desktop\My_Program\C_Primer_Plus\Project3.1\Project3.1.c(13,9): warning C4473: “printf”: 没有为格式字符串传递足够的参数
+C:\Users\Wu Kaixiang\Desktop\My_Program\C_Primer_Plus\Project3.1\Project3.1.c(13,9): message : 占位符和其参数预计 1 可变参数，但提供的却是 0 参数
+C:\Users\Wu Kaixiang\Desktop\My_Program\C_Primer_Plus\Project3.1\Project3.1.c(13,9): message : 缺失的可变参数 1 为格式字符串“%.2f”所需
+  Project3.1.vcxproj -> C:\Users\Wu Kaixiang\Desktop\My_Program\C_Primer_Plus\Project3.1\x64\Debug\Project3.1.exe
