@@ -4,11 +4,11 @@ int max(int a[], int length);
 
 int main(void) 
 {
-	int a[] = { 5,9,1,6,8,4,3,7,2 };
+	int a[] = { 2,1,3,4 };
 	int length = sizeof(a) / sizeof(a[0]);
 	
 	for (int i = length - 1;i > 0;i--) {
-		int maxid = max(a, length);
+		int maxid = max(a, i+1);
 		int t = a[maxid];
 		a[maxid] = a[i];
 		a[i] = t;
