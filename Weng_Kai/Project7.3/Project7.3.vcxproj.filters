@@ -15,7 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Preliminary_Sorting .c">
+    <ClCompile Include="Selection_Sort.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Bisection_Method.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
