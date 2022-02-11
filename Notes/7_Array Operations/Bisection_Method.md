@@ -1,6 +1,6 @@
 # Bisection_Method
 
-> **二分查找**
+## **二分查找**
 
 例如:在数组中搜索k=21
 
@@ -48,7 +48,7 @@
 
   则`a[left] = a [right] = a[mid] = 21`
 
-> 二分搜索函数代码块:
+二分搜索函数代码块:
 
 ```C
 int search(int k, int a[], int len)
@@ -76,7 +76,7 @@ int search(int k, int a[], int len)
 }
 ```
 
-> **完整代码块**
+**完整代码块**
 
 ```C
 #include<stdio.h>

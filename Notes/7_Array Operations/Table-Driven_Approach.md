@@ -44,7 +44,7 @@
   >
   > C99 提供了一个头文件` <stdbool.h> `定义了 bool 代表 _Bool，true 代表 1，false 代表 0。
 
-> 函数代码块
+函数代码块
 
 ```C
 #include <stdbool.h>
@@ -60,7 +60,7 @@ bool isLeap(int year)
 
 - 结合上述,定义一个判断每个月有多少天的函数`days`
 
-> 函数代码块
+函数代码块
 
 ```C
 int days(int month,int year)
@@ -70,7 +70,7 @@ int days(int month,int year)
 }
 ```
 
-> **完整代码**
+**完整代码**
 
 ```C
 #include<stdio.h>
