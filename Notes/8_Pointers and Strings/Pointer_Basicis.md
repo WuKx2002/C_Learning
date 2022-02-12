@@ -10,7 +10,7 @@
 int main(void)
 {
 	int a;
-	a = 6;
+	a = 100;
 	printf("sizeof(int)=%ld\n", sizeof(int));
 	printf("sizeof(a)=%ld\n", sizeof(a));
 	//%ld 表示按 long int 格式（有符号长整型数格式）输出.
@@ -29,7 +29,7 @@ sizeof(a)=4
 
 ![image-20220210165520846](C:\Users\Wu Kaixiang\AppData\Roaming\Typora\typora-user-images\image-20220210165520846.png)
 
-**取地址运算符 & ,获得变量的地址,他的操作数必须是变量**
+**取地址运算符 & ,获得变量的地址,操作数必须是变量**
 
 ```C
 #include <stdio.h>
@@ -39,14 +39,16 @@ int main(void)
     int i = 0;
 
     printf("i的地址: %p\n", &i);
+    /*%p一般以十六进制整数方式输出指针的值，附加前缀0x.(实测VS2020未加)*/
     printf("sizeof(&i) = %lu\n", sizeof(&i));
 
     int p;
     p = (int)&i;
-    //把i的地址强制转换为int类型并赋值给p
+    //把i的地址强制转换为int类型并赋值给p.
     
     printf("int p = %x\n", p);
     printf("sizeof(int) = %lu\n", sizeof(int));
+    //％x以十六进制数形式输出整数,%lu(long unsigned).
     return 0;
 }
 ```
@@ -73,7 +75,7 @@ sizeof(int) = 4
 
 在32位架构下,`i`的地址不等于 `int p` ,且`i`的地址的大小不等于 `int`的大小
 
-**→地址的大小是否与``int``相同与架构有关**
+==**→地址的大小是否与``int``相同与架构有关**==
 
 ---
 
@@ -151,13 +153,7 @@ int main(void)
 00000050AE4FFE84
 ```
 
-可以发现,
-
-​	`&a` = `a` =` &a[0]`
-
-​	`&a[1]`比`&a[0]`大4
-
-​	**即数组相邻单元地址差4.**
+可以发现, `&a` = `a` =` &a[0]` ,`&a[1]`比`&a[0]`大4	**即数组相邻单元地址差4.**
 
 ## **2.指针**
 
@@ -166,7 +162,13 @@ int i;
 int* p = &i;
 ```
 
-需要注意`int* p,q`和`int *p,q`含义相同,都仅表示p是指针,指向int类型的变量,q是普通int类型的变量.
+```c
+int i;
+int* p;
+p = &i;
+```
+
+星号是用来指定一个变量是指针,需要注意`int* p,q`和`int *p,q`含义相同,都仅表示p是指针,指向int类型的变量,q是普通int类型的变量.
 
 **指针变量的值是具有实际值的变量的地址.**
 
@@ -178,7 +180,7 @@ int* p = &i;
 
 `void f(int *p);`在被调用的时候得到了某个变量的地址
 
-`int i= 0; f(&i);`在函数里面可以通过这个指针访问外卖这个i
+`int i= 0; f(&i);`在函数里面可以通过这个指针访问外面这个`i`
 
 ```C
 #include <stdio.h>
@@ -210,13 +212,13 @@ p = 012FFE08
 
 ---
 
-### 访问地址上的变量*
+### 访问地址上的变量
 
 ***是一个单目运算符,用来访问指针的值所表示的地址上的变量.**
 
 可以做左值,也可以做右值
 
-例如	`int k = *p;`	`p* = k+1;`
+例如	`int k = *p;`	`*p = k+1;`
 
 ```C
 #include <stdio.h>
@@ -240,7 +242,7 @@ void f(int* p)
     printf("p = %p\n", p);
     printf("*p = %d\n", *p);
 
-    *p = 26;//更改*p的值
+    *p = 26;//*p访问了p所指的那个地址(i的地址)上的变量i,并给i赋予了新值.
 }
 ```
 
@@ -250,7 +252,7 @@ void f(int* p)
 &i = 00EFF8C0   	//i的地址
 p = 00EFF8C0  		//i的地址
 *p = 6  			//i的值
-new i = 26  		//i的值随*p的值的更改而更改
+new i = 26  		//i的新值
 ```
 
 ##  3.指针与数组
@@ -258,14 +260,14 @@ new i = 26  		//i的值随*p的值的更改而更改
 ```c
 #include <stdio.h>
 
-void f(int a[]);
+void f(int a[]);//数组作为参数传入函数
 
 int main(void)
 {
     int a[] = { 0,1,2,3,4,5,6,7,8,9 };
 
     printf("main sizeof(a) = %lu\n", sizeof(a));
-    printf("main &a = %p\n", a);
+    printf("main &a = %p\n", a);//直接用a即可取得地址( &a = a = &a[0])
 
     f(a);
 
@@ -275,7 +277,7 @@ int main(void)
 void f(int a[])
 {
     printf("f sizeof(a) = %lu\n", sizeof(a));
-    printf("f a = %p\n", a);//没有加"&"
+    printf("f a = %p\n", a);
     a[0] = 1000;
 }
 ```
@@ -293,7 +295,7 @@ f a = 0053FD68
 
 在`f`函数中更改`a[0]`的值,`main`函数中运行完`f`函数后查看`a[0]`发现`a[0]`被改写.
 
-**→实际上,函数参数表中的数组是指针**
+==→实际上,函数参数表中的数组是指针==
 
 而`int`类型的指针占4字节,故`f sizeof(a)=4`,不等于`main sizeof(a)`.
 
@@ -306,16 +308,17 @@ int f(int a[]);
 int f(int []);
 ```
 
-**→数组变量是特殊的指针**
-
-数组变量本身表达地址,所以无需用"&"取地址.
+==→数组变量是特殊的指针==
 
 ```C
 int a[10];
-int *p = a;
+int *p1 = a;
+int *p2 = a[1];
 ```
 
-但是数组的单元表达的是变量,需要用"&"取地址.(注:`a =  &a[0]`)
+数组变量本身表达地址,所以无需用"&"取地址.
+
+但是数组的单元表达的是变量,需要用"&"取地址.
 
 ---
 
@@ -372,4 +375,26 @@ int main(void)
 
 **数组变量是const的指针,所以不能被赋值.**
 
-`int b`→`int * const b`
+`int b[]`→`int * const b`
+
+> **const 关键字**
+>
+> 可以使用 **const** 前缀声明指定类型的常量，如下所示：
+>
+> ```c
+> const int a = 5;
+> // const 关键字
+> // int 数据类型
+> // a 变量名
+> ```
+>
+> const 声明常量要在一个语句内完成：
+>
+> ```
+> const int a = 5; √
+> 
+> const int a;     ×       
+> 
+> const int a;
+> a = 5;           ×
+> ```
