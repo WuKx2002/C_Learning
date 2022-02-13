@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="getStruct1.c" />
+    <ClCompile Include="Structure_Array.c" />
     <ClCompile Include="Tomorrow.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

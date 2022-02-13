@@ -21,5 +21,8 @@
     <ClCompile Include="getStruct1.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Structure_Array.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

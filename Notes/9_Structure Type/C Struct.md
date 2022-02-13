@@ -395,3 +395,72 @@ Book author : Zara Ali
 Book subject : Telecom Billing Tutorial
 Book book_id : 6495700
 ```
+
+## 结构体数组
+
+> 结构体中也有数组，称为**结构体数组**。
+>
+> 它与前面讲的数值型数组几乎是一模一样的，只不过需要注意的是，**结构体数组的每一个元素都是一个结构体类型的变量，都包含结构体中所有的成员项。**
+
+定义结构体数组的方法很简单，同定义结构体变量是一样的，只不过将变量改成数组。或者说同前面介绍的普通数组的定义是一模一样的，如：
+
+```c
+struct date dates[100];
+struct date dates[] = {
+    {4,5,2005},{2,4,2005}};
+```
+
+实例
+
+```c
+#include<stdio.h>
+
+struct time {
+    int hour;
+    int minutes;
+    int seconds;
+};
+
+struct time timeUpdate(struct time now);
+
+int main(void)
+{
+    struct time testTimes[5] = {
+        {11,59,59},{12,0,0},{1,29,59},{23,59,59},{19,12,27}
+    };
+
+    int i;
+    for (i = 0;i < 5;++i) {
+        printf("Time is %.2i:%.2i:%.2i",
+            testTimes[1].hour, testTimes[1].minutes, testTimes[1].seconds);
+
+        testTimes[i] = timeUpdate(testTimes[i]);
+
+        printf("...one second later it is %.2i:%.2i:%.2i\n",
+            testTimes[1].hour, testTimes[1].minutes, testTimes[1].seconds);
+    }
+
+    return 0;
+}
+
+struct time timeUpdate(struct time now)
+{
+    ++now.seconds;
+    if (now.seconds == 60) {
+        now.seconds = 0;
+        ++now.minutes;
+
+        if (now.minutes == 60) {
+            now.minutes = 0;
+            ++now.hour;
+
+            if (now.hour == 24) {
+                now.hour = 0;
+
+            }
+        }
+    }
+    return now;
+}
+```
+

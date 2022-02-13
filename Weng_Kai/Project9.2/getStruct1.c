@@ -8,7 +8,7 @@ struct point {
 void getStruct(struct point);
 void output(struct point);
 
-int main(void)
+int main_2(void)
 {
     struct point y = { 0,0 };
     getStruct(y);

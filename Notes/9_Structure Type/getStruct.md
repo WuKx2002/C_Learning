@@ -2,9 +2,7 @@
 
 > **引入:**
 >
-> 没有直接的方式可以scanf一个结构.
->
-> 如果我们打算写一个函数来读入结构.
+> C语言没有直接的方式可以scanf一个结构,我们打算写一个函数来读入结构.
 
 如果我们写这样一个函数:
 
@@ -97,6 +95,14 @@ void output(struct point p)
     printf("%d %d\n", p.x, p.y);
 }
 ```
+运行结果:
+
+```
+请输入两个整数:3 5
+3 5
+3 5
+```
+
 ## 方案二
 
 > *K&R* once said,
@@ -113,9 +119,10 @@ struct point {
     int y;
 };
 
-struct point* getStruct(struct point *);
+struct point* getStruct(struct point*p);
+//结构指针作为参数传入getStruct,结果以指针的形式返回.
 void output(struct point);
-void print(const struct point*p);
+void print(const struct point* p);
 
 int main(void)
 {
@@ -128,13 +135,12 @@ int main(void)
     return 0;
 }
 
-struct point* getStruct(struct point *)
+struct point* getStruct(struct point*p)
 {
-    struct point p;
     printf("请输入两个整数:");
-    scanf_s("%d %d", &p->x,&p->y);
+    scanf_s("%d %d", &p->x, &p->y);
+    printf("%d %d\n", p->x, p->y);
     return p;
-    /*传入一个指针,在函数里对指针所指的东西进行处理后,传出指针.*/
 }
 
 void output(struct point p)
@@ -142,9 +148,17 @@ void output(struct point p)
     printf("%d %d\n", p.x, p.y);
 }
 
-void print(const struct point*p)
+void print(const struct point* p)
 {
-    printf("%d %d\n", p->x,p->y);
+    printf("%d %d\n", p->x, p->y);
 }
+```
+
+运行结果:
+
+```
+请输入两个整数:3 5
+3 5
+3 5
 ```
 
