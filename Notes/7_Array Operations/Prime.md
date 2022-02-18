@@ -4,7 +4,7 @@
 
 思路:在大于1的自然数中，除了1和它本身以外不再有其他因数的自然数是素数
 
-## **方法一 **
+## **实例一 **
 
 ### 输出100以内素数及其和
 
@@ -44,7 +44,7 @@ int main(void)
 }
 ```
 
-## **方法二**
+## **实例二**
 
 ### 输出前100个素数
 
@@ -153,5 +153,153 @@ int isPrime(int x,int knownPrimes[],int numberOfKnownPrimes)
 }
 ```
 
+## 实例三
 
+### 《C Primer Plus》中对`isPrime`函数的定义
+
+**要求:给定一个整数,如果有约数,显示所有能整除他的约数,如果没有约数,则报告该数是一个素数.**
+
+```mermaid
+graph TB
+    A[输入一个整数] --> B{"是否有约数"}
+    B -->|是| C[显示所有约数]
+    B -->|否| D[报告该数是素数]
+```
+
+#### 1. 是-->显示所有约数
+
+- 输入一个整数`num`
+
+- 设计一个循环,检测`2`~`num`之间所有的整数是否能被`num`整除,能则显示出来.
+- 由数学知识,其实不需要检测`2`~`num`之间所有的整数,比如输入`144`检测出`2`是约数后,那么`72`也是`144` 的约数.因此,只需要检测到`num`的平方根即可.
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+int main(void)
+{
+	unsigned long num;	//待测试的数
+	unsigned long div;	//可能的约数
+	//使用long unsigned扩大整数的范围
+	bool isPrime = true;
+
+	scanf_s("%ld", &num);
+
+	for (div = 2;(div * div) < num;div++)
+	{
+		if (num % div == 0)
+		{
+			if (div * div != num)
+			{
+				printf("%ld is divisibal by %ld and %ld.\n",
+					num, div, num / div);
+			}
+			else
+			{
+				printf("%ld is divisibal by %ld.",
+					num, div);
+			}
+		}
+	}
+
+	return 0;
+}
+```
+
+#### 2. 否-->显示报告该数是素数
+
+- 否即代表没有进入`if`语句
+- 声明一个`bool`类型变量`isPrime`并初始化为`true`,在内层`if`语句结束后,令`isPrime = false;`
+- 这样在`for`循环结束后,通过判断`isPrime`的值,即可判断是否是素数,是则报告.
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+int main(void)
+{
+	unsigned long num;	//待测试的数
+	unsigned long div;	//可能的约数
+	//使用long unsigned扩大整数的范围
+	bool isPrime = true;
+
+	scanf_s("%lu", &num);
+
+	for (div = 2;(div * div) < num;div++)
+	{
+		if (num % div == 0)
+		{
+			if (div * div != num)
+			{
+				printf("%lu is divisibal by %ld and %ld.\n",
+					num, div, num / div);
+			}
+			else
+			{
+				printf("%lu is divisibal by %ld.",
+					num, div);
+			}
+            isPrime = false;
+		}
+	}
+
+	if (isPrime)
+	{
+		printf("%lu is prime.", num);
+	}
+
+	return 0;
+}
+```
+
+为了可以连续使用多次程序,在外层包上一个`while`循环(同时添加适当引导语).于是,程序的完整代码:
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+int main(void)
+{
+	unsigned long num;	//待测试的数
+	unsigned long div;	//可能的约数
+	//使用long unsigned扩大整数的范围
+
+	bool isPrime ;
+
+	printf("Please enter a integer to analysis.(Q TO QUIT):");
+
+
+	while (scanf_s("%lu", &num) == 1)
+	{
+		for (div = 2,isPrime = true;(div * div) < num;div++)
+		{
+			if (num % div == 0)
+			{
+				if (div * div != num)
+				{
+					printf("%lu is divisibal by %ld and %ld.\n",
+						num, div, num / div);
+				}
+				else
+				{
+					printf("%lu is divisibal by %ld.",
+						num, div);
+				}
+				isPrime = false;
+			}
+		}
+
+		if (isPrime)
+		{
+			printf("%lu is prime.\n", num);
+		}
+		printf("Please enter a integer to analysis.(Q TO QUIT):");
+	}
+
+	printf("Bye!");
+
+	return 0;
+}
+```
 
