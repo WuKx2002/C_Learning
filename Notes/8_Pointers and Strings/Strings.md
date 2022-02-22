@@ -20,7 +20,7 @@ char site[] = "RUNOOB";
 
 以下是 C/C++ 中定义的字符串的内存表示：
 
-![C/C++ 中的字符串表示](https://www.runoob.com/wp-content/uploads/2014/09/c-strings-2020-12-21.png)
+![](https://markdown-1309501826.cos.ap-nanjing.myqcloud.com/Typora/C语言/字符串表示.png)
 
 其实，您不需要把 **null** 字符放在字符串常量的末尾。C 编译器会在初始化数组时，自动把 **\0** 放在字符串的末尾。让我们尝试输出上面的字符串：
 

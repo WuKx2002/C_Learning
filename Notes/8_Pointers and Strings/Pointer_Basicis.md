@@ -27,7 +27,7 @@ sizeof(a)=4
 
 即`int`在内存当中占4个字节(4*8=32比特)
 
-![image-20220210165520846](C:\Users\Wu Kaixiang\AppData\Roaming\Typora\typora-user-images\image-20220210165520846.png)
+![](https://markdown-1309501826.cos.ap-nanjing.myqcloud.com/Typora/C语言/数据类型字节数和范围.png)
 
 **取地址运算符 & ,获得变量的地址,操作数必须是变量**
 
@@ -113,7 +113,7 @@ int main(void)
 
 相差4,同样也是一个int.(int类型在32位和64位都占4字节)
 
-![image-20220210171916328](C:\Users\Wu Kaixiang\AppData\Roaming\Typora\typora-user-images\image-20220210171916328.png)
+![](https://markdown-1309501826.cos.ap-nanjing.myqcloud.com/Typora/C语言/int存储方式.png)
 
 ---
 
@@ -172,7 +172,7 @@ p = &i;
 
 **指针变量的值是具有实际值的变量的地址.**
 
-![img](https://www.runoob.com/wp-content/uploads/2014/09/c-pointer.png)
+![](https://markdown-1309501826.cos.ap-nanjing.myqcloud.com/Typora/C语言/指针示意图.png)
 
 ---
 
@@ -398,3 +398,37 @@ int main(void)
 > const int a;
 > a = 5;           ×
 > ```
+
+一个帮助理解的小程序(观察输出值之间的关系):
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    int a[5] = {0,2,4,6,8};
+
+    printf("a = %p,&a = %p,&a[0] = %p,&a[1] = %p,a + 1 = %p,&a + 1 = %p\n",
+    a,&a,&a[0],&a[1],a + 1,&a + 1);
+
+    printf("*a = %d,*a + 1 = %d,*(a + 1) = %d\n",*a,*a + 1,*(a + 1));
+
+    printf("a[2] = %p",a[2]);
+
+    int * b = a;
+
+    printf("b = %p,&b = %p,&b[0] = %p,&b[1] = %p,b + 1 = %p,&b + 1 = %p\n",
+    b,&b,&b[0],&b[1],b + 1,&b + 1);
+
+    printf("*b = %d,*b + 1 = %d,*(b + 1) = %d\n",*b,*b + 1,*(b + 1));
+
+    printf("b[2] = %p",b[2]);
+    
+    return 0;
+}
+```
+
+## 4.指针与二维数组
+
+![](https://markdown-1309501826.cos.ap-nanjing.myqcloud.com/Typora/C语言/二维数组.jpg)
+
