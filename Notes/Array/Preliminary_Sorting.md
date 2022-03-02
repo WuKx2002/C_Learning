@@ -117,7 +117,33 @@ int max(int a[], int length)
 }
 ```
 
-
+> 更简洁的指针算法
+>
+> ```c
+> void swap(int *a,int *b) 
+> {
+>     int temp = *a;
+>     *a = *b;
+>     *b = temp;
+> }
+> void selection_sort(int arr[], int len)
+> {
+>     int i,j;
+> 
+>     for (i = 0 ; i < len - 1 ; i++)
+>     {
+>         int min = i;
+>         for (j = i + 1; j < len; j++)
+>         {  
+>             if (arr[j] < arr[min])
+>             {   
+>                 min = j;
+>             }
+>         }
+>         swap(&arr[min], &arr[i]);
+>     }
+> }
+> ```
 
 
 

@@ -215,45 +215,44 @@ sizeof a[0] = 16        sizeof a[0][0] = 4
 ![](https://markdown-1309501826.cos.ap-nanjing.myqcloud.com/Typora/C语言/a指向.jpg)
 
 > 下面用《C Primer Plus》中的例子演示指向二维数组的指针的应用：
+>
+> ```c
+> #include <stdio.h>
+> int main(void)
+> {
+>  int zippo[4][2] = { {2,4}, {6,8}, {1,3}, {5, 7} };
+>  int (*pz)[2];
+>  pz = zippo;
+> 
+>  printf("   pz = %p,    pz + 1 = %p\n",
+>         pz,         pz + 1);
+>  printf("pz[0] = %p, pz[0] + 1 = %p\n",
+>         pz[0],      pz[0] + 1);
+>  printf("  *pz = %p,   *pz + 1 = %p\n",
+>         *pz,        *pz + 1);
+>  printf("pz[0][0] = %d\n", pz[0][0]);
+>  printf("  *pz[0] = %d\n", *pz[0]);
+>  printf("    **pz = %d\n", **pz);
+>  printf("      pz[2][1] = %d\n", pz[2][1]);
+>  printf("*(*(pz+2) + 1) = %d\n", *(*(pz+2) + 1));
+> 
+>  return 0;
+> }
+> ```
+> 输出：
+> ```
+> pz = 000000000061FDF0,    pz + 1 = 000000000061FDF8
+> pz[0] = 000000000061FDF0, pz[0] + 1 = 000000000061FDF4
+>   *pz = 000000000061FDF0,   *pz + 1 = 000000000061FDF4
+> pz[0][0] = 2
+>   *pz[0] = 2
+>     **pz = 2
+>       pz[2][1] = 3
+> *(*(pz+2) + 1) = 3
+> ```
+> 即`pz[m][n] == *(*(pz + m) + n)`
 
-```c
-#include <stdio.h>
-int main(void)
-{
-    int zippo[4][2] = { {2,4}, {6,8}, {1,3}, {5, 7} };
-    int (*pz)[2];
-    pz = zippo;
-    
-    printf("   pz = %p,    pz + 1 = %p\n",
-           pz,         pz + 1);
-    printf("pz[0] = %p, pz[0] + 1 = %p\n",
-           pz[0],      pz[0] + 1);
-    printf("  *pz = %p,   *pz + 1 = %p\n",
-           *pz,        *pz + 1);
-    printf("pz[0][0] = %d\n", pz[0][0]);
-    printf("  *pz[0] = %d\n", *pz[0]);
-    printf("    **pz = %d\n", **pz);
-    printf("      pz[2][1] = %d\n", pz[2][1]);
-    printf("*(*(pz+2) + 1) = %d\n", *(*(pz+2) + 1));
-    
-    return 0;
-}
-```
 
-输出：
-
-```
-   pz = 000000000061FDF0,    pz + 1 = 000000000061FDF8
-pz[0] = 000000000061FDF0, pz[0] + 1 = 000000000061FDF4
-  *pz = 000000000061FDF0,   *pz + 1 = 000000000061FDF4
-pz[0][0] = 2
-  *pz[0] = 2
-    **pz = 2
-      pz[2][1] = 3
-*(*(pz+2) + 1) = 3
-```
-
-即`pz[m][n] == *(*(pz + m) + n)`
 
 ## 4.函数与一维数组
 
