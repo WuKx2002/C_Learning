@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "hotel.h"
-
+extern int getNights(void);
 int main(void)
 {
 	int code;
