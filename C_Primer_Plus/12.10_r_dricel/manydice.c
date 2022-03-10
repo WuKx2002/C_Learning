@@ -28,7 +28,7 @@ int main(void)
 				continue;//重新回到循环起点读取输入
 			}
 		}
-		int roll = roll_n_dice(dice, sides);
+		int roll = roll_n_dice(dice, sides); 
 		printf("You have rolled a %d using %d %d-sided dice.\n", 
 			roll, dice, sides);
 		fputs("How many dice ? Enter 0 to stop.\n", stdout);
