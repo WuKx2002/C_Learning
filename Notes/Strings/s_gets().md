@@ -67,7 +67,7 @@ int main(void)
 char * s_gets(char * st, int n)
 {
     char * ret_val;
-    char * find;
+    char i = 0;
     
     ret_val = fgets(st, n, stdin);
     if (ret_val)
